@@ -11,7 +11,7 @@
       --maroon: #641c32;
       --dark: #210b13;
       --yellow: #ffd447;
-      --white: #fff;
+      --white: #ffffff;
       --muted: #e0cbd1;
       --panel: #3b1825;
     }
@@ -91,7 +91,6 @@
 
     main { max-width: 1120px; margin: auto; padding: 25px 5% 60px; }
     section { padding-top: 32px; scroll-margin-top: 15px; }
-
     .section-head { margin-bottom: 18px; }
     h2 { font-size: 1.65rem; margin: 0; }
     .sub, .muted { color: var(--muted); font-size: .9rem; }
@@ -245,9 +244,7 @@
     <div class="grid" id="teams-grid">
       <p class="muted">Loading rugby teams...</p>
     </div>
-    <div class="notice">
-      Team names and age groups must be confirmed by the school before publication.
-    </div>
+    <div class="notice">Team names and age groups must be confirmed by the school before publication.</div>
   </section>
 
   <section id="about">
@@ -268,7 +265,7 @@
 <script>
   const ccsSupabase = window.supabase.createClient(
     "https://duadeecarmnddptynscs.supabase.co",
-    "sb_publishable_bt5iEPd91qGDEPREq7iMSQ_ZbyIhuZ0"
+    "sb_publishable_-Z6gKKmZqu-RIgZIINEFzw_LBF5tNQN"
   );
 
   async function loadCCSRugbyTeams() {
