@@ -352,7 +352,20 @@
     SUPABASE_PUBLISHABLE_KEY
   );
 
-  console.log("CCS Rugby database connection is ready.");
+  console.log("CCS Rugby database connection is ready.");async function testCCSRugbyConnection() {
+  const { data, error } = await ccsSupabase
+    .from("rugby_teams")
+    .select("name, age_group");
+
+  if (error) {
+    console.error("CCS Rugby database error:", error.message);
+    return;
+  }
+
+  console.log("CCS Rugby teams:", data);
+}
+
+testCCSRugbyConnection();
 </script>
 
 </body>
