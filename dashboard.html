@@ -1,0 +1,211 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a2c">
+  <title>Admin Dashboard | CSS Skoolsport</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/config.js"></script>
+  <script src="/dashboard.js" defer></script>
+  <style>
+    .dashboard { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 36px 0 60px; }
+    .dash-header { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:30px; }
+    .dash-header h1 { margin:14px 0 6px; font-size:clamp(2rem,5vw,3rem); }
+    .dash-header p { color:#a6b2c6; margin:0; }
+    .dash-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .dash-actions button { cursor:pointer; font:inherit; }
+    .dash-nav { display:flex; gap:8px; flex-wrap:wrap; margin:25px 0; }
+    .dash-nav a { padding:9px 14px; border:1px solid rgba(255,255,255,.12); border-radius:10px; color:#c7f464; font-size:.9rem; }
+    .dash-panel { margin:22px 0; padding:clamp(20px,4vw,30px); border:1px solid rgba(255,255,255,.1); border-radius:20px; background:#152139; }
+    .dash-panel h2 { margin-top:0; }
+    .dash-panel > p { color:#a6b2c6; }
+    .dash-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .dash-field { display:flex; flex-direction:column; gap:7px; min-width:0; }
+    .dash-field.full { grid-column:1/-1; }
+    .dash-field label { font-size:.88rem; font-weight:700; }
+    .dash-field input,.dash-field select,.dash-field textarea { width:100%; min-height:46px; padding:11px 12px; border:1px solid rgba(255,255,255,.15); border-radius:10px; background:#0a1020; color:#f7f9fc; font:inherit; }
+    .dash-field textarea { min-height:110px; resize:vertical; }
+    .dash-form button { justify-self:start; cursor:pointer; font:inherit; }
+    .dash-message { margin:14px 0 0; color:#c7f464; overflow-wrap:anywhere; }
+    .dash-message.error { color:#ff9999; }
+    .dash-list { display:grid; gap:12px; margin-top:20px; }
+    .dash-item { padding:16px; border:1px solid rgba(255,255,255,.1); border-radius:12px; overflow-wrap:anywhere; }
+    .dash-item h3 { margin:0 0 8px; }
+    .dash-item p { margin:5px 0; color:#a6b2c6; }
+    .dash-item button { margin-top:10px; cursor:pointer; }
+    .dash-divider { border:0; border-top:1px solid rgba(255,255,255,.1); margin:25px 0; }
+    .dash-status { color:#c7f464; font-size:.9rem; }
+    @media(max-width:650px) {
+      .dash-form { grid-template-columns:1fr; }
+      .dash-field.full { grid-column:auto; }
+      .dash-header { align-items:flex-start; }
+      .dash-actions { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="/">
+        <span class="brand-mark">CSS</span>
+        <span>Skoolsport Admin</span>
+      </a>
+      <div class="dash-actions">
+        <a class="button secondary" href="/">View website</a>
+        <button class="button" id="logout-button" type="button">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="dash-header">
+      <div>
+        <span class="eyebrow">Control centre</span>
+        <h1>Sports dashboard</h1>
+        <p>Manage fixtures, results, announcements, photos and streaming.</p>
+      </div>
+      <span class="dash-status" id="dashboard-status">Checking access…</span>
+    </div>
+
+    <nav class="dash-nav" aria-label="Dashboard sections">
+      <a href="#matches">Matches</a>
+      <a href="#news">News</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#stream">Live stream</a>
+    </nav>
+
+    <section class="dash-panel" id="matches">
+      <h2>Fixtures & results</h2>
+      <p>Add a fixture or record a completed match. Scores are for CSS as the home team.</p>
+
+      <form class="dash-form" id="match-form">
+        <div class="dash-field">
+          <label for="match-sport">Sport</label>
+          <select id="match-sport" required>
+            <option value="Rugby">Rugby</option>
+            <option value="Netball">Netball</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="dash-field">
+          <label for="match-age">Team / age group</label>
+          <input id="match-age" placeholder="e.g. U/16A" required>
+        </div>
+        <div class="dash-field">
+          <label for="match-opponent">Opponent</label>
+          <input id="match-opponent" placeholder="Opponent school or team" required>
+        </div>
+        <div class="dash-field">
+          <label for="match-date">Match date and time</label>
+          <input id="match-date" type="datetime-local">
+        </div>
+        <div class="dash-field">
+          <label for="match-status">Match status</label>
+          <select id="match-status" required>
+            <option value="Upcoming">Upcoming</option>
+            <option value="Live">Live</option>
+            <option value="Half-time">Half-time</option>
+            <option value="Completed">Completed</option>
+            <option value="Postponed">Postponed</option>
+          </select>
+        </div>
+        <div class="dash-field">
+          <label for="match-venue">Venue</label>
+          <input id="match-venue" placeholder="e.g. CSS sports field">
+        </div>
+        <div class="dash-field">
+          <label for="match-home-score">CSS score</label>
+          <input id="match-home-score" type="number" min="0" placeholder="Leave blank if not played">
+        </div>
+        <div class="dash-field">
+          <label for="match-away-score">Opponent score</label>
+          <input id="match-away-score" type="number" min="0" placeholder="Leave blank if not played">
+        </div>
+        <div class="dash-field full">
+          <label for="match-notes">Additional details (optional)</label>
+          <textarea id="match-notes" placeholder="Match notes or updates"></textarea>
+        </div>
+        <div class="dash-field full">
+          <button class="button" type="submit">Save match</button>
+        </div>
+      </form>
+      <p class="dash-message" id="match-message" role="status" aria-live="polite"></p>
+
+      <hr class="dash-divider">
+      <h3>Published matches</h3>
+      <div class="dash-list" id="admin-matches">Loading matches…</div>
+    </section>
+
+    <section class="dash-panel" id="news">
+      <h2>Sports news</h2>
+      <p>Publish match reports, team announcements and sports updates.</p>
+
+      <form class="dash-form" id="news-form">
+        <div class="dash-field full">
+          <label for="news-title">Headline</label>
+          <input id="news-title" maxlength="180" required placeholder="Enter a headline">
+        </div>
+        <div class="dash-field full">
+          <label for="news-body">Article / announcement</label>
+          <textarea id="news-body" required placeholder="Write your sports update here"></textarea>
+        </div>
+        <div class="dash-field full">
+          <button class="button" type="submit">Publish news</button>
+        </div>
+      </form>
+      <p class="dash-message" id="news-message" role="status" aria-live="polite"></p>
+      <div class="dash-list" id="admin-news">Loading news…</div>
+    </section>
+
+    <section class="dash-panel" id="gallery">
+      <h2>Photo gallery</h2>
+      <p>Upload sports photographs and give each image a title.</p>
+
+      <form class="dash-form" id="gallery-form">
+        <div class="dash-field full">
+          <label for="gallery-title">Photo title</label>
+          <input id="gallery-title" maxlength="180" required placeholder="e.g. U/16A match day">
+        </div>
+        <div class="dash-field full">
+          <label for="gallery-file">Choose photograph</label>
+          <input id="gallery-file" type="file" accept="image/jpeg,image/png,image/webp" required>
+        </div>
+        <div class="dash-field full">
+          <button class="button" type="submit">Upload photograph</button>
+        </div>
+      </form>
+      <p class="dash-message" id="gallery-message" role="status" aria-live="polite"></p>
+      <div class="dash-list" id="admin-gallery">Loading gallery…</div>
+    </section>
+
+    <section class="dash-panel" id="stream">
+      <h2>Live-stream settings</h2>
+      <p>Add the external URL for a match broadcast. Leave the URL empty if no stream is available.</p>
+
+      <form class="dash-form" id="stream-form">
+        <div class="dash-field full">
+          <label for="stream-url-input">Stream URL</label>
+          <input id="stream-url-input" type="url" placeholder="https://example.com/live">
+        </div>
+        <div class="dash-field full">
+          <button class="button" type="submit">Save stream link</button>
+        </div>
+      </form>
+      <p class="dash-message" id="stream-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <div class="notice">
+      <strong>Administrator reminder:</strong> Only publish authorised school-sport information and photos you have permission to share.
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>CSS Skoolsport Admin</strong></p>
+    <p>Right of admission reserved Troyden Africa</p>
+    <p>This is not an official school website.</p>
+  </footer>
+</body>
+</html>
