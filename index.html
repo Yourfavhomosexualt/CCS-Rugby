@@ -377,10 +377,7 @@ async function loadCCSRugbyTeams() {
     .order("id");
 
   if (error) {
-    grid.textContent = "Teams could not be loaded. Please try again later.";
-    console.error("Teams loading error:", error.message);
-    return;
-  }
+   grid.textContent = "Database error: " + error.message;
 
   grid.replaceChildren();
 
