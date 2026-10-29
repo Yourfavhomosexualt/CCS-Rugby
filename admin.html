@@ -1,0 +1,122 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a2c">
+  <title>Admin Login | CSS Skoolsport</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/config.js"></script>
+  <script src="/admin.js" defer></script>
+  <style>
+    .admin-page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      background: #152139;
+      box-shadow: 0 24px 70px rgba(0,0,0,.28);
+    }
+    .login-card h1 {
+      margin: 22px 0 8px;
+      font-size: 2rem;
+    }
+    .login-card > p {
+      color: #a6b2c6;
+    }
+    .admin-label {
+      display: block;
+      margin: 20px 0 7px;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .admin-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 10px;
+      background: #0a1020;
+      color: #f7f9fc;
+      font: inherit;
+    }
+    .login-card button {
+      width: 100%;
+      margin-top: 24px;
+      cursor: pointer;
+      font: inherit;
+    }
+    .login-message {
+      margin-top: 16px;
+      color: #c7f464;
+      overflow-wrap: anywhere;
+    }
+    .login-message.error {
+      color: #ff9999;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 22px;
+      color: #c7f464;
+      font-size: .9rem;
+    }
+    .login-card .brand-mark {
+      display: inline-grid;
+    }
+  </style>
+</head>
+<body>
+  <main class="admin-page">
+    <section class="login-card">
+      <a class="brand" href="/">
+        <span class="brand-mark">CSS</span>
+        <span>CSS Skoolsport</span>
+      </a>
+
+      <h1>Admin sign in</h1>
+      <p>Sign in to manage fixtures, scores, news and sports photographs.</p>
+
+      <form id="admin-login-form">
+        <label class="admin-label" for="admin-email">Email address</label>
+        <input
+          class="admin-input"
+          id="admin-email"
+          name="email"
+          type="email"
+          autocomplete="username"
+          placeholder="Your admin email"
+          required
+        >
+
+        <label class="admin-label" for="admin-password">Password</label>
+        <input
+          class="admin-input"
+          id="admin-password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Your password"
+          required
+        >
+
+        <button class="button" id="admin-login-button" type="submit">
+          Sign in securely
+        </button>
+
+        <p class="login-message" id="login-message" role="status" aria-live="polite"></p>
+      </form>
+
+      <a class="back-link" href="/">← Back to the sports website</a>
+    </section>
+  </main>
+</body>
+</html>
