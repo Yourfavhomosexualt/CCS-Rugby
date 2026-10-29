@@ -3,309 +3,743 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#641c32">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#570d20">
+  <meta name="description" content="CSS Rugby — results, fixtures, teams and live rugby streaming for Ceres Sekondêre Skool.">
   <title>CSS Rugby | Ceres Sekondêre Skool</title>
+
   <style>
     :root {
-      --maroon: #641c32;
-      --dark: #210b13;
-      --yellow: #ffd447;
+      --maroon: #570d20;
+      --maroon-dark: #350713;
+      --maroon-light: #791c34;
+      --gold: #f2c14e;
+      --cream: #faf8f3;
       --white: #ffffff;
-      --muted: #e0cbd1;
-      --panel: #3b1825;
+      --text: #211a1c;
+      --muted: #746a6d;
+      --border: #e9e1e3;
+      --green: #187849;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
     body {
-      margin: 0;
-      background: var(--dark);
-      color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
 
     header {
-      background: var(--maroon);
-      border-bottom: 1px solid #ffffff30;
-      padding: 16px 5%;
+      background: var(--maroon-dark);
+      color: var(--white);
+      border-bottom: 3px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      min-height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
+      gap: 20px;
       flex-wrap: wrap;
+      padding: 12px 0;
     }
 
-    .brand { font-weight: 900; font-size: 1.2rem; }
-    .brand span, h1 span { color: var(--yellow); }
-
-    nav { display: flex; gap: 16px; flex-wrap: wrap; }
-    nav a { color: var(--muted); font-size: .9rem; }
-    nav a:hover { color: var(--yellow); }
-
-    .hero {
-      padding: 60px 6%;
-      background:
-        radial-gradient(ellipse at top right, #87394f, transparent 55%),
-        linear-gradient(135deg, var(--maroon), var(--dark));
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .tag {
-      display: inline-block;
-      color: var(--yellow);
-      border: 1px solid #ffd44780;
-      padding: 5px 12px;
-      border-radius: 30px;
-      font-size: .75rem;
-      font-weight: 800;
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 900;
       letter-spacing: 1px;
     }
 
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      line-height: 1.05;
-      margin: 20px 0;
+    .brand-sub {
+      font-size: 10px;
+      color: #e8d6db;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
-    .hero p { color: var(--muted); max-width: 560px; }
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      background:
+        linear-gradient(110deg, rgba(38, 4, 13, .96), rgba(87, 13, 32, .84)),
+        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1800&q=85");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 90px 0 85px;
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 580px;
+      color: #eee1e4;
+      font-size: 17px;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
     .btn {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--dark);
-      padding: 12px 18px;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 6px;
+      padding: 12px 20px;
       font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .2s, opacity .2s;
     }
 
-    .btn.secondary {
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--maroon-dark);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,.5);
       background: transparent;
-      border: 1px solid #ffffff70;
+    }
+
+    .section {
+      padding: 65px 0;
+    }
+
+    .section-white {
+      background: white;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(27px, 5vw, 38px);
+      line-height: 1.2;
+      color: var(--maroon);
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .section-label {
+      color: #93611a;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .score-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 5px 18px rgba(40, 8, 17, .04);
+    }
+
+    .score-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .age-group {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .win {
+      background: #e8f6ed;
+      color: var(--green);
+      padding: 5px 10px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .scoreline {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .team-name {
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .team-name:first-child {
+      color: var(--maroon);
+    }
+
+    .score {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .score-separator {
+      color: #b6aaad;
+      padding: 0 5px;
+      font-size: 20px;
+    }
+
+    .score-caption {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .fixtures-box {
+      border: 1px dashed #d4c3c8;
+      background: #fffafb;
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .fixtures-box .icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .fixtures-box h3 {
+      color: var(--maroon);
+      margin-bottom: 8px;
+    }
+
+    .fixtures-box p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .live-section {
+      background: var(--maroon-dark);
       color: white;
     }
 
-    main { max-width: 1120px; margin: auto; padding: 25px 5% 60px; }
-    section { padding-top: 32px; scroll-margin-top: 15px; }
-    .section-head { margin-bottom: 18px; }
-    h2 { font-size: 1.65rem; margin: 0; }
-    .sub, .muted { color: var(--muted); font-size: .9rem; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
-      gap: 16px;
+    .live-section .section-head h2 {
+      color: white;
     }
 
-    .card {
-      background: var(--panel);
-      border: 1px solid #ffffff20;
+    .live-section .section-head p {
+      color: #d9c9ce;
+    }
+
+    .live-card {
+      background: #21040b;
+      border: 1px solid #663040;
       border-radius: 14px;
-      padding: 20px;
-      min-width: 0;
+      padding: 16px;
+      overflow: hidden;
     }
 
-    .status {
-      display: inline-block;
-      background: #ffffff15;
-      border-radius: 20px;
-      padding: 4px 9px;
-      color: var(--yellow);
-      font-size: .75rem;
-      font-weight: 800;
-    }
-
-    .teamscore {
+    .live-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin: 18px 0;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .live-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffcccc;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      background: #ef4444;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, .16);
+    }
+
+    .live-note {
+      color: #d6c5ca;
+      font-size: 13px;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #100207;
+      border-radius: 9px;
+      overflow: hidden;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .watch-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--gold);
+      font-size: 14px;
       font-weight: 800;
     }
 
-    .score { font-size: 1.6rem; color: var(--yellow); }
-    .team { border-left: 4px solid var(--yellow); }
-
-    .video {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-top: 15px;
+    .watch-link:hover {
+      text-decoration: underline;
     }
 
-    .video iframe { width: 100%; height: 100%; border: 0; }
+    .team-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+    }
+
+    .team-badge {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--maroon);
+      color: var(--gold);
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .team-card h3 {
+      color: var(--maroon);
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .team-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
 
     .notice {
-      background: #ffd44712;
-      border: 1px solid #ffd44750;
-      border-radius: 10px;
-      padding: 14px;
+      border-left: 4px solid var(--gold);
+      background: white;
+      padding: 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
       color: var(--muted);
-      font-size: .9rem;
-      margin-top: 16px;
     }
 
     footer {
-      background: #16070d;
-      border-top: 1px solid #ffffff20;
-      text-align: center;
-      padding: 28px 5%;
-      color: var(--muted);
-      font-size: .85rem;
+      background: #20040b;
+      color: #d9c8cd;
+      padding: 30px 0;
+      font-size: 12px;
     }
 
-    @media (max-width: 480px) {
-      header { align-items: flex-start; }
-      nav { gap: 12px; }
-      .hero { padding-top: 45px; }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 650px) {
+      .nav {
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .score-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .score-card {
+        padding: 18px;
+      }
+
+      .team-name {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <a class="brand" href="#home">CSS <span>RUGBY</span></a>
-  <nav aria-label="Main navigation">
-    <a href="#scores">Scores</a>
-    <a href="#fixtures">Fixtures</a>
-    <a href="#live">Watch Live</a>
-    <a href="#teams">Teams</a>
-  </nav>
-</header>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="CSS Rugby home">
+        <div class="brand-mark">CSS</div>
+        <div>
+          <div class="brand-name">CSS RUGBY</div>
+          <div class="brand-sub">Pride. Passion. Rugby.</div>
+        </div>
+      </a>
 
-<div class="hero" id="home">
-  <span class="tag">CERES · WESTERN CAPE</span>
-  <h1>OUR SCHOOL.<br>OUR GAME.<br><span>OUR RUGBY.</span></h1>
-  <p>Follow Ceres Sekondêre Skool rugby — fixtures, results, teams and live-stream updates in one place.</p>
-  <div class="actions">
-    <a class="btn" href="#live">▶ Watch Live</a>
-    <a class="btn secondary" href="#fixtures">View Fixtures</a>
-  </div>
-</div>
-
-<main>
-  <section id="scores">
-    <div class="section-head">
-      <h2>Latest Results</h2>
-      <p class="sub">Verified scores will be published here after matches.</p>
+      <nav aria-label="Main navigation">
+        <a href="#results">Results</a>
+        <a href="#fixtures">Fixtures</a>
+        <a href="#live">Watch Live</a>
+        <a href="#teams">Teams</a>
+        <a href="#about">About</a>
+      </nav>
     </div>
-    <div class="grid">
-      <article class="card">
-        <span class="status">DEMO RESULT</span>
-        <div class="teamscore"><span>CSS First XV</span><span class="score">0</span></div>
-        <div class="teamscore"><span>Opposition</span><span class="score">0</span></div>
-        <p class="muted">Example only — this is not a real result.</p>
-      </article>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <span class="eyebrow">Ceres Sekondêre Skool</span>
+        <h1>ONE SCHOOL.<br><span>ONE TEAM.</span></h1>
+        <p>
+          Follow CSS Rugby for match results, upcoming fixtures,
+          team updates and live rugby action.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#results">View Results</a>
+          <a class="btn btn-secondary" href="#live">Watch Live</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Matchday Record</div>
+          <h2>Latest Results</h2>
+          <p>CSS Rugby vs Montana — results supplied for the website.</p>
+        </div>
+
+        <div class="score-grid">
+          <article class="score-card">
+            <div class="score-top">
+              <span class="age-group">O/14A Rugby</span>
+              <span class="win">CSS WIN</span>
+            </div>
+            <div class="scoreline">
+              <span class="team-name">CSS</span>
+              <span class="score">12<span class="score-separator">–</span>0</span>
+              <span class="team-name">Montana</span>
+            </div>
+            <p class="score-caption">Final score</p>
+          </article>
+
+          <article class="score-card">
+            <div class="score-top">
+              <span class="age-group">O/15A Rugby</span>
+              <span class="win">CSS WIN</span>
+            </div>
+            <div class="scoreline">
+              <span class="team-name">CSS</span>
+              <span class="score">29<span class="score-separator">–</span>5</span>
+              <span class="team-name">Montana</span>
+            </div>
+            <p class="score-caption">Final score</p>
+          </article>
+
+          <article class="score-card">
+            <div class="score-top">
+              <span class="age-group">O/16A Rugby</span>
+              <span class="win">CSS WIN</span>
+            </div>
+            <div class="scoreline">
+              <span class="team-name">CSS</span>
+              <span class="score">24<span class="score-separator">–</span>12</span>
+              <span class="team-name">Montana</span>
+            </div>
+            <p class="score-caption">Final score</p>
+          </article>
+
+          <article class="score-card">
+            <div class="score-top">
+              <span class="age-group">O/19A Rugby</span>
+              <span class="win">CSS WIN</span>
+            </div>
+            <div class="scoreline">
+              <span class="team-name">CSS</span>
+              <span class="score">12<span class="score-separator">–</span>7</span>
+              <span class="team-name">Montana</span>
+            </div>
+            <p class="score-caption">Final score</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="fixtures">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">What's Next</div>
+          <h2>Upcoming Fixtures</h2>
+          <p>Check back for confirmed match dates and kick-off times.</p>
+        </div>
+
+        <div class="fixtures-box">
+          <div class="icon">🏉</div>
+          <h3>Fixtures Coming Soon</h3>
+          <p>
+            Upcoming opponents, venues and kick-off times will be
+            published when they have been confirmed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section live-section" id="live">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Live Match Centre</div>
+          <h2>Watch CSS Rugby</h2>
+          <p>Watch the camera stream directly on this page.</p>
+        </div>
+
+        <div class="live-card">
+          <div class="live-top">
+            <span class="live-status">
+              <span class="live-dot"></span>
+              LIVE STREAM PLAYER
+            </span>
+            <span class="live-note">
+              If offline, check back when streaming starts.
+            </span>
+          </div>
+
+          <div class="video-frame">
+            <iframe
+              src="https://ssh101.com/securelive/index.php?id=cssrugby2026"
+              title="CSS Rugby live stream"
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <a
+            class="watch-link"
+            href="https://ssh101.com/live/cssrugby2026"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open stream in a new page ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teams">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Represent CSS</div>
+          <h2>Our Teams</h2>
+          <p>Celebrating the players who represent the school.</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-badge">CSS</div>
+          <h3>CSS First Team</h3>
+          <p>
+            Follow CSS Rugby for team news, results and match coverage.
+            Team lists and player profiles can be added when confirmed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-copy">
+            <div class="section-label">About This Project</div>
+            <h2 style="color: var(--maroon); margin-bottom: 16px;">
+              The CSS Rugby Experience
+            </h2>
+            <p>
+              CSS Rugby brings results, fixtures and livestream viewing
+              together in one convenient place.
+            </p>
+            <p>
+              The aim is to make it easier for supporters to follow
+              school rugby and celebrate the teams.
+            </p>
+          </div>
+
+          <div class="notice">
+            <strong>Important notice</strong><br><br>
+            This website is an independent website concept and is not
+            necessarily an official school publication. School approval
+            should be obtained before representing it as an official
+            school website or publishing school-related media.
+            Ensure permission is obtained before filming or streaming
+            players, staff or spectators, particularly minors.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>CSS RUGBY</strong><br>
+        Ceres Sekondêre Skool
+      </div>
+      <div>
+        Pride. Passion. Rugby.<br>
+        <span id="year"></span> CSS Rugby website concept.
+      </div>
     </div>
-    <div class="notice">Automatic score feeds are not connected. Do not treat demonstration scores as real results.</div>
-  </section>
+  </footer>
 
-  <section id="fixtures">
-    <div class="section-head">
-      <h2>Upcoming Fixtures</h2>
-      <p class="sub">Check back for confirmed dates and venues.</p>
-    </div>
-    <div class="grid">
-      <article class="card">
-        <span class="status">FIXTURE TBC</span>
-        <h3>CSS First XV</h3>
-        <p>Opponent: To be confirmed</p>
-        <p class="muted">Date: To be confirmed</p>
-        <p class="muted">Venue: To be confirmed</p>
-      </article>
-    </div>
-    <p class="muted">Only officially confirmed fixtures should be added.</p>
-  </section>
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 
-  <section id="live">
-    <div class="section-head">
-      <h2>Watch CSS Rugby</h2>
-      <p class="sub">Live matches will appear here when streaming is available.</p>
-    </div>
-    <div class="card">
-      <span class="status">STREAM NOT CONNECTED</span>
-      <p class="muted">A real YouTube live video ID is needed to display a stream here.</p>
-      <a class="btn secondary" href="https://www.youtube.com/" target="_blank" rel="noopener">Open YouTube</a>
-    </div>
-  </section>
-
-  <section id="teams">
-    <div class="section-head">
-      <h2>Our Rugby Teams</h2>
-      <p class="sub">Teams are loaded from the CSS Rugby database.</p>
-    </div>
-    <div class="grid" id="teams-grid">
-      <p class="muted">Loading rugby teams...</p>
-    </div>
-    <div class="notice">Team names and age groups must be confirmed by the school before publication.</div>
-  </section>
-
-  <section id="about">
-    <div class="card">
-      <h2>CSS Rugby</h2>
-      <p class="muted">An independent rugby information website concept for Ceres Sekondêre Skool. Confirm school permission before presenting this as an official school service.</p>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <strong>CSS RUGBY</strong>
-  <p>Ceres Sekondêre Skool · Ceres, Western Cape</p>
-  <p>Fixtures and results are subject to confirmation.</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const ccsSupabase = window.supabase.createClient(
-    "https://duadeecarmnddptynscs.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1YWRlZWNhcm1uZGRwdHluc2NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMyNzg2MzcsImV4cCI6MjEwODg1NDYzN30.-FgTEmq1G8hT1ErRzHOVx5Y8i_6qBDGz-Sv30TMUOa8"
-  );
-
-  async function loadCCSRugbyTeams() {
-    const grid = document.getElementById("teams-grid");
-
-    const { data, error } = await ccsSupabase
-      .from("rugby_teams")
-      .select("name, age_group")
-      .order("id");
-
-    if (error) {
-      grid.textContent = "Teams could not be loaded: " + error.message;
-      console.error("CSS Rugby database error:", error.message);
-      return;
-    }
-
-    grid.replaceChildren();
-
-    if (!data || data.length === 0) {
-      grid.textContent = "No teams have been added yet.";
-      return;
-    }
-
-    data.forEach((team) => {
-      const card = document.createElement("article");
-      card.className = "card team";
-
-      const heading = document.createElement("h3");
-      heading.textContent = team.name;
-
-      const detail = document.createElement("p");
-      detail.className = "muted";
-      detail.textContent = team.age_group;
-
-      card.append(heading, detail);
-      grid.appendChild(card);
-    });
-  }
-
-  loadCCSRugbyTeams();
-</script>
 </body>
 </html>
