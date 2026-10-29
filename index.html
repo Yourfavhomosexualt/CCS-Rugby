@@ -341,5 +341,19 @@
   <p>Fixtures and results are subject to confirmation.</p>
 </footer>
 
+<!-- CCS Rugby database connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://duadeecarmnddptynscs.supabase.co/rest/v1/";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_bt5iEPd91qGDEPREq7iMSQ_ZbyIhuZ0";
+
+  const ccsSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log("CCS Rugby database connection is ready.");
+</script>
+
 </body>
 </html>
