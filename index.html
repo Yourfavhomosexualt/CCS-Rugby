@@ -301,9 +301,11 @@
       <div>
         <h2>Our Rugby Teams</h2>
         <p class="sub">Age groups must be confirmed by the school.</p>
-      </div>
-    </div>
-    <div class="grid">
+ 
+<div class="grid" id="teams-grid">
+  <p class="muted">Loading rugby teams...</p>
+</div>
+
       <article class="card team">
         <h3>First XV</h3>
         <p class="muted">Senior school rugby</p>
@@ -367,6 +369,46 @@
 
 testCCSRugbyConnection();
 </script>
+
+async function loadCCSRugbyTeams() {
+  const grid = document.getElementById("teams-grid");
+  if (!grid) return;
+
+  const { data, error } = await ccsSupabase
+    .from("rugby_teams")
+    .select("name, age_group")
+    .order("id");
+
+  if (error) {
+    grid.textContent = "Teams could not be loaded. Please try again later.";
+    console.error("Teams loading error:", error.message);
+    return;
+  }
+
+  grid.replaceChildren();
+
+  if (!data || data.length === 0) {
+    grid.textContent = "No teams have been added yet.";
+    return;
+  }
+
+  data.forEach((team) => {
+    const card = document.createElement("article");
+    card.className = "card team";
+
+    const heading = document.createElement("h3");
+    heading.textContent = team.name;
+
+    const detail = document.createElement("p");
+    detail.className = "muted";
+    detail.textContent = team.age_group;
+
+    card.append(heading, detail);
+    grid.appendChild(card);
+  });
+}
+
+loadCCSRugbyTeams();
 
 </body>
 </html>
