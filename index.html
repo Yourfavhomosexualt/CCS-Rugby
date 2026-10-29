@@ -409,6 +409,52 @@ async function loadCCSRugbyTeams() {
 }
 
 loadCCSRugbyTeams();
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const ccsSupabase = window.supabase.createClient(
+  "https://duadeecarmnddptynscs.supabase.co",
+  "sb_publishable_bt5iEPd91qGDEPREq7iMSQ_ZbyIhuZ0"
+);
 
+async function loadCCSRugbyTeams() {
+  const grid = document.getElementById("teams-grid");
+  if (!grid) return;
+
+  const { data, error } = await ccsSupabase
+    .from("rugby_teams")
+    .select("name, age_group")
+    .order("id");
+
+  if (error) {
+    grid.textContent = "Teams could not be loaded.";
+    console.error(error.message);
+    return;
+  }
+
+  grid.replaceChildren();
+
+  if (!data || data.length === 0) {
+    grid.textContent = "No teams have been added yet.";
+    return;
+  }
+
+  data.forEach((team) => {
+    const card = document.createElement("article");
+    card.className = "card team";
+
+    const heading = document.createElement("h3");
+    heading.textContent = team.name;
+
+    const detail = document.createElement("p");
+    detail.className = "muted";
+    detail.textContent = team.age_group;
+
+    card.append(heading, detail);
+    grid.appendChild(card);
+  });
+}
+
+loadCCSRugbyTeams();
+</script>
 </body>
 </html>
