@@ -3,21 +3,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#102b20">
-  <title>CCS Rugby | Ceres Sekondêre Skool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#641c32">
+  <title>CSS Rugby | Ceres Sekondêre Skool</title>
   <style>
     :root {
-      --green: #123b2b;
-      --dark: #091b13;
-      --lime: #c9f36a;
-      --white: #ffffff;
-      --muted: #b8c9bf;
-      --panel: #183e2e;
+      --maroon: #641c32;
+      --dark: #210b13;
+      --yellow: #ffd447;
+      --white: #fff;
+      --muted: #e0cbd1;
+      --panel: #3b1825;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -31,8 +30,8 @@
     a { color: inherit; text-decoration: none; }
 
     header {
-      background: var(--green);
-      border-bottom: 1px solid #ffffff20;
+      background: var(--maroon);
+      border-bottom: 1px solid #ffffff30;
       padding: 16px 5%;
       display: flex;
       justify-content: space-between;
@@ -42,23 +41,23 @@
     }
 
     .brand { font-weight: 900; font-size: 1.2rem; }
-    .brand span { color: var(--lime); }
+    .brand span, h1 span { color: var(--yellow); }
 
-    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav { display: flex; gap: 16px; flex-wrap: wrap; }
     nav a { color: var(--muted); font-size: .9rem; }
-    nav a:hover { color: var(--lime); }
+    nav a:hover { color: var(--yellow); }
 
     .hero {
-      padding: 65px 6% 55px;
+      padding: 60px 6%;
       background:
-        radial-gradient(ellipse at top right, #346347 0, transparent 50%),
-        linear-gradient(135deg, var(--green), var(--dark));
+        radial-gradient(ellipse at top right, #87394f, transparent 55%),
+        linear-gradient(135deg, var(--maroon), var(--dark));
     }
 
     .tag {
       display: inline-block;
-      color: var(--lime);
-      border: 1px solid #c9f36a70;
+      color: var(--yellow);
+      border: 1px solid #ffd44780;
       padding: 5px 12px;
       border-radius: 30px;
       font-size: .75rem;
@@ -68,20 +67,16 @@
 
     h1 {
       font-size: clamp(2.5rem, 8vw, 5rem);
-      line-height: 1.02;
+      line-height: 1.05;
       margin: 20px 0;
-      max-width: 800px;
     }
 
-    h1 span { color: var(--lime); }
-
     .hero p { color: var(--muted); max-width: 560px; }
-
     .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
 
     .btn {
       display: inline-block;
-      background: var(--lime);
+      background: var(--yellow);
       color: var(--dark);
       padding: 12px 18px;
       border-radius: 8px;
@@ -90,25 +85,16 @@
 
     .btn.secondary {
       background: transparent;
-      border: 1px solid #ffffff60;
+      border: 1px solid #ffffff70;
       color: white;
     }
 
     main { max-width: 1120px; margin: auto; padding: 25px 5% 60px; }
-
     section { padding-top: 32px; scroll-margin-top: 15px; }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
+    .section-head { margin-bottom: 18px; }
     h2 { font-size: 1.65rem; margin: 0; }
-    .sub { color: var(--muted); font-size: .9rem; margin: 4px 0 0; }
+    .sub, .muted { color: var(--muted); font-size: .9rem; }
 
     .grid {
       display: grid;
@@ -118,7 +104,7 @@
 
     .card {
       background: var(--panel);
-      border: 1px solid #ffffff15;
+      border: 1px solid #ffffff20;
       border-radius: 14px;
       padding: 20px;
       min-width: 0;
@@ -126,10 +112,10 @@
 
     .status {
       display: inline-block;
-      background: #ffffff12;
+      background: #ffffff15;
       border-radius: 20px;
       padding: 4px 9px;
-      color: var(--lime);
+      color: var(--yellow);
       font-size: .75rem;
       font-weight: 800;
     }
@@ -143,9 +129,8 @@
       font-weight: 800;
     }
 
-    .score { font-size: 1.6rem; color: var(--lime); white-space: nowrap; }
-
-    .muted { color: var(--muted); font-size: .88rem; }
+    .score { font-size: 1.6rem; color: var(--yellow); }
+    .team { border-left: 4px solid var(--yellow); }
 
     .video {
       width: 100%;
@@ -158,11 +143,9 @@
 
     .video iframe { width: 100%; height: 100%; border: 0; }
 
-    .team { border-left: 4px solid var(--lime); }
-
     .notice {
-      background: #c9f36a12;
-      border: 1px solid #c9f36a40;
+      background: #ffd44712;
+      border: 1px solid #ffd44750;
       border-radius: 10px;
       padding: 14px;
       color: var(--muted);
@@ -171,15 +154,13 @@
     }
 
     footer {
-      background: #06110c;
+      background: #16070d;
       border-top: 1px solid #ffffff20;
       text-align: center;
       padding: 28px 5%;
       color: var(--muted);
       font-size: .85rem;
     }
-
-    footer strong { color: white; }
 
     @media (max-width: 480px) {
       header { align-items: flex-start; }
@@ -191,7 +172,7 @@
 <body>
 
 <header>
-  <a class="brand" href="#home">CCS <span>RUGBY</span></a>
+  <a class="brand" href="#home">CSS <span>RUGBY</span></a>
   <nav aria-label="Main navigation">
     <a href="#scores">Scores</a>
     <a href="#fixtures">Fixtures</a>
@@ -203,10 +184,7 @@
 <div class="hero" id="home">
   <span class="tag">CERES · WESTERN CAPE</span>
   <h1>OUR SCHOOL.<br>OUR GAME.<br><span>OUR RUGBY.</span></h1>
-  <p>
-    Follow Ceres Sekondêre Skool rugby — match fixtures, results,
-    team age groups and live-stream updates in one place.
-  </p>
+  <p>Follow Ceres Sekondêre Skool rugby — fixtures, results, teams and live-stream updates in one place.</p>
   <div class="actions">
     <a class="btn" href="#live">▶ Watch Live</a>
     <a class="btn secondary" href="#fixtures">View Fixtures</a>
@@ -216,239 +194,121 @@
 <main>
   <section id="scores">
     <div class="section-head">
-      <div>
-        <h2>Latest Results</h2>
-        <p class="sub">Match scores and final results.</p>
-      </div>
+      <h2>Latest Results</h2>
+      <p class="sub">Verified scores will be published here after matches.</p>
     </div>
     <div class="grid">
       <article class="card">
         <span class="status">DEMO RESULT</span>
-        <div class="teamscore">
-          <span>CCS First XV</span><span class="score">0</span>
-        </div>
-        <div class="teamscore">
-          <span>Opposition</span><span class="score">0</span>
-        </div>
-        <p class="muted">Example only — replace with a verified result.</p>
-      </article>
-      <article class="card">
-        <span class="status">AWAITING RESULTS</span>
-        <h3>More results coming</h3>
-        <p class="muted">Verified scores will be published here after matches.</p>
+        <div class="teamscore"><span>CSS First XV</span><span class="score">0</span></div>
+        <div class="teamscore"><span>Opposition</span><span class="score">0</span></div>
+        <p class="muted">Example only — this is not a real result.</p>
       </article>
     </div>
-    <div class="notice">
-      Scores are demonstration content for now. Automatic score feeds
-      have not been connected. Do not treat these as real match results.
-    </div>
+    <div class="notice">Automatic score feeds are not connected. Do not treat demonstration scores as real results.</div>
   </section>
 
   <section id="fixtures">
     <div class="section-head">
-      <div>
-        <h2>Upcoming Fixtures</h2>
-        <p class="sub">Check back for confirmed dates and venues.</p>
-      </div>
+      <h2>Upcoming Fixtures</h2>
+      <p class="sub">Check back for confirmed dates and venues.</p>
     </div>
     <div class="grid">
       <article class="card">
         <span class="status">FIXTURE TBC</span>
-        <h3>CCS First XV</h3>
+        <h3>CSS First XV</h3>
         <p>Opponent: To be confirmed</p>
         <p class="muted">Date: To be confirmed</p>
         <p class="muted">Venue: To be confirmed</p>
-        <span class="status">FIXTURE TBC</span>
-        <h3>Junior Rugby</h3>
-        <p>Age group and opponent to be confirmed.</p>
-        <p class="muted">Date and venue to be confirmed.</p>
+      </article>
     </div>
-    <p class="muted">Only officially confirmed fixtures should be added here.</p>
+    <p class="muted">Only officially confirmed fixtures should be added.</p>
   </section>
 
   <section id="live">
     <div class="section-head">
-      <div>
-        <h2>Watch CCS Rugby</h2>
-        <p class="sub">Live matches will appear here when streaming is available.</p>
-      </div>
+      <h2>Watch CSS Rugby</h2>
+      <p class="sub">Live matches will appear here when streaming is available.</p>
     </div>
     <div class="card">
       <span class="status">STREAM NOT CONNECTED</span>
-      <div class="video">
-        <!-- Replace VIDEO_ID with the actual YouTube live video ID -->
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
-          title="Ceres Sekondêre Skool rugby live stream"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <p class="muted">
-        The live player is a placeholder until a real YouTube video ID is added.
-      </p>
-      <a class="btn secondary" href="https://www.youtube.com/" target="_blank" rel="noopener">
-        Open YouTube
-      </a>
+      <p class="muted">A real YouTube live video ID is needed to display a stream here.</p>
+      <a class="btn secondary" href="https://www.youtube.com/" target="_blank" rel="noopener">Open YouTube</a>
     </div>
   </section>
 
   <section id="teams">
     <div class="section-head">
-      <div>
-        <h2>Our Rugby Teams</h2>
-        <p class="sub">Age groups must be confirmed by the school.</p>
- 
-<div class="grid" id="teams-grid">
-  <p class="muted">Loading rugby teams...</p>
-</div>
-
-      <article class="card team">
-        <h3>First XV</h3>
-        <p class="muted">Senior school rugby</p>
-      </article>
-      <article class="card team">
-        <h3>Junior Teams</h3>
-        <p class="muted">U14 · U15 · U16 · U17</p>
-      </article>
-      <article class="card team">
-        <h3>Additional Teams</h3>
-        <p class="muted">Add other confirmed age groups here.</p>
-      </article>
+      <h2>Our Rugby Teams</h2>
+      <p class="sub">Teams are loaded from the CSS Rugby database.</p>
+    </div>
+    <div class="grid" id="teams-grid">
+      <p class="muted">Loading rugby teams...</p>
     </div>
     <div class="notice">
-      These are starter categories, not a verified school team list.
-      Confirm the school's actual age groups before publishing details.
+      Team names and age groups must be confirmed by the school before publication.
     </div>
   </section>
 
   <section id="about">
     <div class="card">
-      <h2>CCS Rugby</h2>
-      <p class="muted">
-        An independent rugby information website concept for
-        Ceres Sekondêre Skool. Official school affiliation and permission
-        must be confirmed before presenting this as an official school service.
-      </p>
+      <h2>CSS Rugby</h2>
+      <p class="muted">An independent rugby information website concept for Ceres Sekondêre Skool. Confirm school permission before presenting this as an official school service.</p>
     </div>
   </section>
 </main>
 
 <footer>
-  <strong>CCS RUGBY</strong>
+  <strong>CSS RUGBY</strong>
   <p>Ceres Sekondêre Skool · Ceres, Western Cape</p>
   <p>Fixtures and results are subject to confirmation.</p>
 </footer>
 
-<!-- CCS Rugby database connection -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const SUPABASE_URL = "https://duadeecarmnddptynscs.supabase.co/rest/v1/";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_bt5iEPd91qGDEPREq7iMSQ_ZbyIhuZ0";
-
   const ccsSupabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
+    "https://duadeecarmnddptynscs.supabase.co",
+    "sb_publishable_bt5iEPd91qGDEPREq7iMSQ_ZbyIhuZ0"
   );
 
-  console.log("CCS Rugby database connection is ready.");async function testCCSRugbyConnection() {
-  const { data, error } = await ccsSupabase
-    .from("rugby_teams")
-    .select("name, age_group");
+  async function loadCCSRugbyTeams() {
+    const grid = document.getElementById("teams-grid");
 
-  if (error) {
-    console.error("CCS Rugby database error:", error.message);
-    return;
+    const { data, error } = await ccsSupabase
+      .from("rugby_teams")
+      .select("name, age_group")
+      .order("id");
+
+    if (error) {
+      grid.textContent = "Teams could not be loaded: " + error.message;
+      console.error("CSS Rugby database error:", error.message);
+      return;
+    }
+
+    grid.replaceChildren();
+
+    if (!data || data.length === 0) {
+      grid.textContent = "No teams have been added yet.";
+      return;
+    }
+
+    data.forEach((team) => {
+      const card = document.createElement("article");
+      card.className = "card team";
+
+      const heading = document.createElement("h3");
+      heading.textContent = team.name;
+
+      const detail = document.createElement("p");
+      detail.className = "muted";
+      detail.textContent = team.age_group;
+
+      card.append(heading, detail);
+      grid.appendChild(card);
+    });
   }
 
-  console.log("CCS Rugby teams:", data);
-}
-
-testCCSRugbyConnection();
-
-
-async function loadCCSRugbyTeams() {
-  const grid = document.getElementById("teams-grid");
-  if (!grid) return;
-
-  const { data, error } = await ccsSupabase
-    .from("rugby_teams")
-    .select("name, age_group")
-    .order("id");
-
-  if (error) {
-   grid.textContent = "Database error: " + error.message;
-
-  grid.replaceChildren();
-
-  if (!data || data.length === 0) {
-    grid.textContent = "No teams have been added yet.";
-    return;
-  }
-
-  data.forEach((team) => {
-    const card = document.createElement("article");
-    card.className = "card team";
-
-    const heading = document.createElement("h3");
-    heading.textContent = team.name;
-
-    const detail = document.createElement("p");
-    detail.className = "muted";
-    detail.textContent = team.age_group;
-
-    card.append(heading, detail);
-    grid.appendChild(card);
-  });
-}
-
-loadCCSRugbyTeams();
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const ccsSupabase = window.supabase.createClient(
-  "https://duadeecarmnddptynscs.supabase.co",
-  "sb_publishable_bt5iEPd91qGDEPREq7iMSQ_ZbyIhuZ0"
-);
-
-async function loadCCSRugbyTeams() {
-  const grid = document.getElementById("teams-grid");
-  if (!grid) return;
-
-  const { data, error } = await ccsSupabase
-    .from("rugby_teams")
-    .select("name, age_group")
-    .order("id");
-
-  if (error) {
-    grid.textContent = "Teams could not be loaded.";
-    console.error(error.message);
-    return;
-  }
-
-  grid.replaceChildren();
-
-  if (!data || data.length === 0) {
-    grid.textContent = "No teams have been added yet.";
-    return;
-  }
-
-  data.forEach((team) => {
-    const card = document.createElement("article");
-    card.className = "card team";
-
-    const heading = document.createElement("h3");
-    heading.textContent = team.name;
-
-    const detail = document.createElement("p");
-    detail.className = "muted";
-    detail.textContent = team.age_group;
-
-    card.append(heading, detail);
-    grid.appendChild(card);
-  });
-}
-
-loadCCSRugbyTeams();
+  loadCCSRugbyTeams();
 </script>
 </body>
 </html>
